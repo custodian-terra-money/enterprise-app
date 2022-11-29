@@ -1,7 +1,7 @@
 import { useTx, TxBuilder } from '@terra-money/apps/libs/transactions';
 import { enterprise } from 'types/contracts';
 import { TX_KEY } from './txKey';
-import { useTxOverrides } from './useFeeOverrides';
+import { useTxOverrides } from './useTxOverrides';
 
 interface ExecuteProposalTxOptions {
   daoAddress: string;
@@ -23,7 +23,7 @@ export const useExecuteProposalTx = () => {
         .build();
 
       return {
-        //...txOverrides,
+        ...txOverrides,
         ...tx,
       };
     },

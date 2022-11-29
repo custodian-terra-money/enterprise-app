@@ -3,7 +3,7 @@ import { u } from '@terra-money/apps/types';
 import { BigSource } from 'big.js';
 import { enterprise } from 'types/contracts';
 import { TX_KEY } from './txKey';
-import { useTxOverrides } from './useFeeOverrides';
+import { useTxOverrides } from './useTxOverrides';
 
 interface StakeTokenTxOptions {
   daoAddress: string;

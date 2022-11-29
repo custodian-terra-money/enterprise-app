@@ -2,7 +2,7 @@ import { useContractAddress } from '@terra-money/apps/hooks';
 import { useTx, TxBuilder } from '@terra-money/apps/libs/transactions';
 import { enterprise_factory } from 'types/contracts';
 import { TX_KEY } from './txKey';
-import { useTxOverrides } from './useFeeOverrides';
+import { useTxOverrides } from './useTxOverrides';
 
 export type CreateDaoMsgType = Extract<enterprise_factory.ExecuteMsg, { create_dao: {} }>;
 
