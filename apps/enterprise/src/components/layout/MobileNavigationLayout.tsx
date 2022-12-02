@@ -9,34 +9,25 @@ import { Favourites } from './Favourites';
 import { IconButton, Tooltip } from 'components/primitives';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import { Path } from 'navigation';
-import styles from './NavigationLayout.module.sass';
-import { useIsSmallScreen } from 'hooks/useIsSmallScreen';
-import { MobileNavigationLayout } from './MobileNavigationLayout';
+import styles from './MobileNavigationLayout.module.sass';
 
-interface NavigationLayoutProps extends PropsWithChildren {}
+interface MobileNavigationLayoutProps extends PropsWithChildren {}
 
-export const NavigationLayout = ({ children }: NavigationLayoutProps) => {
+export const MobileNavigationLayout = ({ children }: MobileNavigationLayoutProps) => {
   const navigate = useNavigate();
 
   const connectedWallet = useConnectedWallet();
 
-  const isSmallScreen = useIsSmallScreen();
-
-  if (isSmallScreen) {
-    return <MobileNavigationLayout>{children}</MobileNavigationLayout>;
-  }
-
   return (
-    <Container className={styles.root} direction="row">
-      <Container className={styles.navigation} direction="column">
-        <Logo compact={true} onClick={() => navigate(Path.Landing)} />
+    <div className={styles.root}>
+      <div className={styles.content}>{children}</div>
+      <div className={styles.navigation}>
+        <div className={styles.items}>
+          <IconButton onClick={() => navigate(Path.Dashboard)}>
+            <HomeIcon />
+          </IconButton>
+        </div>
         <Container className={styles.menu} direction="column">
-          <Tooltip title="Dashboard" placement="right" arrow={true}>
-            <IconButton onClick={() => navigate(Path.Dashboard)}>
-              <HomeIcon />
-            </IconButton>
-          </Tooltip>
-          <Favourites className={styles.favourites} />
           <Tooltip title="Got feedback?" placement="right" arrow={true}>
             <IconButton
               className={styles.feedback}
@@ -54,10 +45,7 @@ export const NavigationLayout = ({ children }: NavigationLayoutProps) => {
             </Tooltip>
           )}
         </Container>
-      </Container>
-      <Container className={styles.content} direction="column">
-        {children}
-      </Container>
-    </Container>
+      </div>
+    </div>
   );
 };
